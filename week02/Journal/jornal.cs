@@ -1,20 +1,22 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 
-public class Jornal
+public class Journal
 {
-    public List<Entry> _anotacoes = new List<Entry>();
+    public List<Entry> _entries = new List<Entry>();
 
-    public void AddEntry(Entry novaAnotacao)
+    public void AddEntry(Entry newEntry)
     {
-        _anotacoes.Add(novaAnotacao);
+        _entries.Add(newEntry);
     }
 
     public void Display()
     {
-        Console.WriteLine("--- Anotações do Diário ---");
-        foreach (Entry anotacao in _anotacoes)
+        Console.WriteLine("--- Journal Entries ---");
+        foreach (Entry entry in _entries)
         {
-            anotacao.Display();
+            entry.Display();
         }
     }
 
@@ -22,29 +24,28 @@ public class Jornal
     {
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            foreach (Entry anotacao in _anotacoes)
+            foreach (Entry entry in _entries)
             {
-                outputFile.WriteLine($"{anotacao._date}|{anotacao._promptText}|{anotacao._entryText}");
+                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
             }
         }
     }
 
     public void LoadFromFile(string filename)
     {
-        _anotacoes.Clear();
-
+        _entries.Clear();
         string[] lines = System.IO.File.ReadAllLines(filename);
 
         foreach (string line in lines)
         {
             string[] parts = line.Split('|');
 
-            Entry novaAnotacao = new Entry();
-            novaAnotacao._date = parts[0];
-            novaAnotacao._promptText = parts[1];
-            novaAnotacao._entryText = parts[2];
+            Entry newEntry = new Entry();
+            newEntry._date = parts[0];
+            newEntry._promptText = parts[1];
+            newEntry._entryText = parts[2];
 
-            _anotacoes.Add(novaAnotacao);
+            _entries.Add(newEntry);
         }
     }
 }

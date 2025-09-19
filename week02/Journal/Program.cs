@@ -4,58 +4,58 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Jornal meuJornal = new Jornal();
+        Journal myJournal = new Journal();
         PromptGenerator promptGenerator = new PromptGenerator();
-        string escolha = "";
+        string choice = "";
 
-        while (escolha != "5")
+        while (choice != "5")
         {
-            Console.WriteLine("Escolha uma opção:");
-            Console.WriteLine("1. Escrever nova entrada");
-            Console.WriteLine("2. Exibir diário");
-            Console.WriteLine("3. Salvar no arquivo");
-            Console.WriteLine("4. Carregar do arquivo");
-            Console.WriteLine("5. Sair");
-            Console.Write("Sua escolha: ");
-            escolha = Console.ReadLine();
+            Console.WriteLine("Please select one of the following choices:");
+            Console.WriteLine("1. Write New Entry");
+            Console.WriteLine("2. Display Journal");
+            Console.WriteLine("3. Save to File");
+            Console.WriteLine("4. Load from File");
+            Console.WriteLine("5. Quit");
+            Console.Write("What would you like to do? ");
+            choice = Console.ReadLine();
 
-            if (escolha == "1")
+            if (choice == "1")
             {
                 string prompt = promptGenerator.GetRandomPrompt();
                 Console.WriteLine(prompt);
                 Console.Write("> ");
-                string resposta = Console.ReadLine();
+                string response = Console.ReadLine();
 
-                Entry novaEntrada = new Entry();
-                novaEntrada._promptText = prompt;
-                novaEntrada._entryText = resposta;
-                novaEntrada._date = DateTime.Now.ToShortDateString();
+                Entry newEntry = new Entry();
+                newEntry._promptText = prompt;
+                newEntry._entryText = response;
+                newEntry._date = DateTime.Now.ToShortDateString();
                 
-                meuJornal.AddEntry(novaEntrada);
+                myJournal.AddEntry(newEntry);
             }
-            else if (escolha == "2")
+            else if (choice == "2")
             {
-                meuJornal.Display();
+                myJournal.Display();
             }
-            else if (escolha == "3")
+            else if (choice == "3")
             {
-                Console.Write("Digite o nome do arquivo para salvar: ");
-                string nomeArquivo = Console.ReadLine();
-                meuJornal.SaveToFile(nomeArquivo);
+                Console.Write("Enter the filename to save: ");
+                string filename = Console.ReadLine();
+                myJournal.SaveToFile(filename);
             }
-            else if (escolha == "4")
+            else if (choice == "4")
             {
-                Console.Write("Digite o nome do arquivo para carregar: ");
-                string nomeArquivo = Console.ReadLine();
-                meuJornal.LoadFromFile(nomeArquivo);
+                Console.Write("Enter the filename to load: ");
+                string filename = Console.ReadLine();
+                myJournal.LoadFromFile(filename);
             }
-            else if (escolha == "5")
+            else if (choice == "5")
             {
-                Console.WriteLine("Saindo do programa. Tchau!");
+                Console.WriteLine("Exiting the program. Goodbye!");
             }
             else
             {
-                Console.WriteLine("Opção inválida. Por favor, escolha um número de 1 a 5.");
+                Console.WriteLine("Invalid option. Please choose a number from 1 to 5.");
             }
         }
     }
