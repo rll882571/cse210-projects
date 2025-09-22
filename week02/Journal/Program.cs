@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Program
 {
@@ -16,6 +18,7 @@ public class Program
             Console.WriteLine("3. Save to File");
             Console.WriteLine("4. Load from File");
             Console.WriteLine("5. Quit");
+            Console.WriteLine("6. Search by Tag"); // Nova opção de menu
             Console.Write("What would you like to do? ");
             choice = Console.ReadLine();
 
@@ -31,6 +34,12 @@ public class Program
                 newEntry._entryText = response;
                 newEntry._date = DateTime.Now.ToShortDateString();
                 
+                // Pede as tags ao usuário
+                Console.Write("Enter tags separated by comma (e.g., travel, work, feelings): ");
+                string tagsInput = Console.ReadLine();
+                // Processa a string de tags e adiciona à entrada
+                newEntry._tags = tagsInput.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim().ToLower()).ToList();
+
                 myJournal.AddEntry(newEntry);
             }
             else if (choice == "2")
@@ -53,9 +62,15 @@ public class Program
             {
                 Console.WriteLine("Exiting the program. Goodbye!");
             }
+            else if (choice == "6") // Lógica para a nova opção de busca
+            {
+                Console.Write("Enter the tag to search for: ");
+                string tag = Console.ReadLine();
+                myJournal.SearchByTag(tag);
+            }
             else
             {
-                Console.WriteLine("Invalid option. Please choose a number from 1 to 5.");
+                Console.WriteLine("Invalid option. Please choose a number from 1 to 6.");
             }
         }
     }
