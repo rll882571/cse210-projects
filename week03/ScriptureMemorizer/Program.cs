@@ -1,5 +1,6 @@
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 public class Program
 {
     public static void Main(string[] args)
@@ -47,7 +48,7 @@ public class Program
         }
         else
         {
-            
+            // Caso o usuário tenha digitado 'quit'
             Console.WriteLine("Program ended by user.");
         }
     }
