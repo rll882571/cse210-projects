@@ -21,7 +21,7 @@ public class Program
         
         while (userInput.ToLower() != "quit" && !scripture.IsCompletelyHidden())
         {
-            /
+            
             Console.Clear();
 
             
