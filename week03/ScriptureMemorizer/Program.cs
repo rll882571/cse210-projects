@@ -2,16 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+
+
 public class Program
 {
     public static void Main(string[] args)
     {
         
 
+        Reference reference = new Reference("John", 3, 16); 
+
+        
+
+
        
         List<Scripture> availableScriptures = new List<Scripture>();
 
         
+
         Reference ref1 = new Reference("John", 3, 16); 
         string text1 = "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.";
         availableScriptures.Add(new Scripture(ref1, text1));
@@ -80,34 +88,57 @@ public class Program
         Console.WriteLine("\nThank you for playing. Goodbye!");
     }
 
-    /// <summary>
-    /// Contém a lógica principal do jogo de memorização.
-    /// </summary>
+    
     public static void RunGameLoop(Scripture scripture)
     {
         string userInput = "";
         
-        // O loop continua ENQUANTO o usuário não digitar 'quit' E a escritura não estiver completamente escondida
+       
         while (userInput.ToLower() != "quit" && !scripture.IsCompletelyHidden())
         {
-            // 3. EXIBIR E INTERAGIR
+            
+        
+        Scripture scripture = new Scripture(reference, scriptureText);
 
-            // Limpa o console antes de cada exibição
+        
+        string userInput = "";
+
+        
+        while (userInput.ToLower() != "quit" && !scripture.IsCompletelyHidden())
+        {
+            
+
             Console.Clear();
 
-            // Exibe a escritura atualizada (com palavras escondidas ou visíveis)
+            
             Console.WriteLine(scripture.GetDisplayText());
 
             // Solicita a entrada do usuário
             Console.WriteLine("\nPress Enter to hide more words or type 'quit' to end the current scripture:");
             userInput = Console.ReadLine();
 
-            // 4. PROCESSAR A ENTRADA
+            
             if (userInput.ToLower() != "quit")
             {
-                // Esconde 3 palavras aleatórias a cada Enter
+                
                 scripture.HideRandomWords(3);
             }
         }
+
+
+
+        
+        if (scripture.IsCompletelyHidden())
+        {
+            Console.Clear();
+            Console.WriteLine(scripture.GetDisplayText());
+            Console.WriteLine("\nAll words are hidden. Program ended.");
+        }
+        else
+        {
+            // Caso o usuário tenha digitado 'quit'
+            Console.WriteLine("Program ended by user.");
+        }
+
     }
 }

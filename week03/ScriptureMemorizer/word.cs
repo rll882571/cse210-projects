@@ -3,56 +3,36 @@ using System;
 public class Word
 {
     private string _text;
-    private bool _isHidden;
+    private bool _IsHidden;
 
-    public   Word(string text) // esse é o construtor padrão
+    public Word(string text)
     {
         _text = text;
-        _isHidden = false;
+        _IsHidden = false;
     }
-
-    public Fraction(int wholeNumber)
+    public void Hide()
     {
-        _top = wholeNumber;
-        _bottom = 1;
+        _IsHidden = true;
     }
-
-    public Fraction(int top, int bottom)
+    public void Show()
     {
-        _top = top;
-        _bottom = bottom;
+        _IsHidden = false;
     }
-
-    public string GetFractionString()
+    public bool IsHidden()
     {
-        string text = $"{_top}/{_bottom}";
-        return text;
+     return _IsHidden;
     }
-
-    public double GetDecimalValue()
+    public string GetDisplayText()
     {
-        return (double)_top / (double)_bottom;
+        if (_IsHidden)
+        {
+            return new string('_', _text.Length);
+        }
+        else
+        {
+            return _text;
+        }
     }
-}
+    
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        Fraction f1 = new Fraction();
-        Console.WriteLine(f1.GetFractionString());
-        Console.WriteLine(f1.GetDecimalValue());
-
-        Fraction f2 = new Fraction(5);
-        Console.WriteLine(f2.GetFractionString());
-        Console.WriteLine(f2.GetDecimalValue());
-
-        Fraction f3 = new Fraction(3, 4);
-        Console.WriteLine(f3.GetFractionString());
-        Console.WriteLine(f3.GetDecimalValue());
-
-        Fraction f4 = new Fraction(1, 3);
-        Console.WriteLine(f4.GetFractionString());
-        Console.WriteLine(f4.GetDecimalValue());
-    }
 }
