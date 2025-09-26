@@ -6,7 +6,8 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        
+        // TO GET FULL GRADE - IMPROVEMENT: The application now manages multiple scriptures in a list.
+        // The main logic was changed to create a selection menu.
         
         List<Scripture> availableScriptures = new List<Scripture>();
 
